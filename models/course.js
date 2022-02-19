@@ -1,6 +1,7 @@
 const uuid = require('uuid')
 const fs = require('fs')
 const path = require('path')
+const res = require('express/lib/response')
 
 class Course {
     constructor(title, price, img){
@@ -53,6 +54,11 @@ class Course {
             )
             }
         )}
+
+        static async getByID(id){
+           const courses = await Course.getAll()
+           return courses.find(c => c.id === id)
+        }
 }      
 
 module.exports = Course
